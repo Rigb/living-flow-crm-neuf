@@ -1,114 +1,116 @@
 import React from 'react';
-import { Mail, Settings, MessageSquare, Plus, ExternalLink, ShieldCheck, PieChart, Activity } from 'lucide-react';
+import { Mail, Settings, MessageSquare, Plus, ExternalLink, ShieldCheck, Box, List, BarChart3, ChevronRight, Minimize2, Maximize2 } from 'lucide-react';
 
 const RightPanel = () => {
   return (
-    <div className="w-80 h-screen bg-[#0A1118]/95 backdrop-blur-2xl border-l border-white/10 flex flex-col p-6 z-10 overflow-y-auto custom-scrollbar">
-      {/* Profile Section */}
-      <div className="text-center mb-8 pt-4">
-        <div className="relative inline-block mb-4">
-          <div className="w-24 h-24 rounded-[2rem] bg-gradient-to-tr from-blue-600 via-indigo-500 to-emerald-500 p-[2px] rotate-3 hover:rotate-0 transition-transform duration-500 cursor-pointer">
-            <div className="w-full h-full rounded-[1.9rem] bg-[#050D14] flex items-center justify-center text-3xl font-bold text-white overflow-hidden -rotate-3 hover:rotate-0 transition-transform duration-500">
-              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Pauline" alt="Avatar" className="w-full h-full object-cover scale-110" />
-            </div>
-          </div>
-          <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-emerald-500 rounded-xl border-4 border-[#0A1118] flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
-            <ShieldCheck size={14} />
-          </div>
+    <div className="w-[340px] h-screen bg-black/60 backdrop-blur-3xl border-l border-emerald-500/10 flex flex-col p-5 z-30 overflow-y-auto custom-scrollbar">
+      {/* Header Profile Toggle */}
+      <div className="flex items-center justify-between mb-4 px-1">
+        <h2 className="text-lg font-bold text-white tracking-tight">Pauline</h2>
+        <div className="flex items-center gap-2">
+          <button className="p-1.5 rounded-lg hover:bg-white/5 text-gray-500 transition-colors">
+            <Minimize2 size={14} />
+          </button>
+          <button className="p-1.5 rounded-lg hover:bg-white/5 text-gray-500 transition-colors">
+            <Settings size={14} />
+          </button>
         </div>
-        <h2 className="text-xl font-bold text-white mb-1 tracking-tight">Pauline Rigb</h2>
-        <p className="text-blue-500 text-[10px] font-bold uppercase tracking-[0.2em]">Head of Operations</p>
       </div>
 
-      {/* Quick Actions Grid */}
-      <div className="grid grid-cols-4 gap-3 mb-10">
-        {[
-          { icon: Mail, label: 'Mail', color: 'hover:text-blue-400' },
-          { icon: MessageSquare, label: 'Chat', color: 'hover:text-emerald-400' },
-          { icon: Plus, label: 'Add', color: 'hover:text-purple-400' },
-          { icon: Settings, label: 'Settings', color: 'hover:text-orange-400' }
-        ].map((item, i) => (
-          <button 
-            key={i} 
-            title={item.label}
-            className={`aspect-square rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 ${item.color} hover:bg-white/10 hover:border-white/20 transition-all duration-300 group shadow-lg shadow-black/20`}
-          >
-            <item.icon size={20} className="group-hover:scale-110 transition-transform" />
+      {/* Main Profile Image Area */}
+      <div className="relative mb-6 group cursor-pointer">
+        <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-emerald-500/20 shadow-2xl shadow-emerald-500/5">
+          <img 
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Pauline" 
+            alt="Pauline AI" 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+        </div>
+        <div className="absolute bottom-4 left-4">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em]">Active AI Agent</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Access Tools */}
+      <div className="grid grid-cols-5 gap-2 mb-8">
+        {[Box, List, Mail, Plus, Settings].map((Icon, i) => (
+          <button key={i} className="aspect-square rounded-xl bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-center text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all group">
+            <Icon size={18} className="group-hover:scale-110 transition-transform" />
           </button>
         ))}
       </div>
 
-      {/* Real-time Metrics Section */}
-      <div className="mb-10 space-y-4">
-        <div className="flex items-center justify-between px-1">
-          <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em]">Live Performance</h3>
-          <Activity size={12} className="text-emerald-500 animate-pulse" />
-        </div>
-        
-        <div className="grid grid-cols-2 gap-3">
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-colors">
-            <div className="flex items-center gap-2 mb-2">
-              <PieChart size={14} className="text-blue-400" />
-              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Efficiency</span>
-            </div>
-            <div className="text-xl font-bold text-white tracking-tight">94.2%</div>
+      {/* System Logs / Activity */}
+      <div className="flex-1 space-y-3 mb-8">
+        {[
+          { text: 'Opening AI Studios module...', status: 'running' },
+          { text: 'Analyzing current data...', status: 'processing' },
+          { text: 'Generating new content draft...', status: 'waiting' },
+        ].map((log, i) => (
+          <div key={i} className="p-3.5 rounded-xl bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-between group cursor-pointer hover:bg-emerald-500/10 transition-all border-l-2 border-l-emerald-500/30">
+            <span className="text-[12px] text-gray-400 font-medium group-hover:text-emerald-300 transition-colors">{log.text}</span>
+            <ChevronRight size={14} className="text-emerald-500/30 group-hover:text-emerald-500 transition-colors" />
           </div>
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/5 group hover:bg-white/10 transition-colors">
-            <div className="flex items-center gap-2 mb-2">
-              <Activity size={14} className="text-emerald-400" />
-              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Uptime</span>
-            </div>
-            <div className="text-xl font-bold text-white tracking-tight">99.9%</div>
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* Automations Section */}
-      <div className="mb-10">
-        <div className="flex items-center justify-between mb-4 px-1">
-          <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em]">Active Flows</h3>
-          <button className="p-1.5 rounded-lg bg-blue-600/10 text-blue-400 hover:bg-blue-600/20 transition-all">
-            <Plus size={14} />
+      {/* Tabs Section */}
+      <div className="flex items-center gap-1 p-1 rounded-xl bg-black/40 border border-emerald-500/10 mb-6">
+        {['Logs', 'Tasks', 'Stats'].map((tab) => (
+          <button key={tab} className={`flex-1 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-widest transition-all ${tab === 'Logs' ? 'bg-emerald-500/10 text-emerald-400' : 'text-gray-500 hover:text-gray-300'}`}>
+            {tab}
           </button>
-        </div>
-        <div className="space-y-3">
-          {[
-            { label: 'Email Campaign', status: 'RUNNING', progress: 65, color: 'bg-blue-500' },
-            { label: 'SEO Analysis', status: 'COMPLETED', progress: 100, color: 'bg-emerald-500' },
-            { label: 'Video Render', status: 'PROCESSING', progress: 42, color: 'bg-orange-500' },
-          ].map((flow, i) => (
-            <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/5 group cursor-pointer hover:border-white/10 transition-all duration-300">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors">{flow.label}</span>
-                <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full bg-white/5 tracking-widest ${flow.progress === 100 ? 'text-emerald-400' : 'text-blue-400'}`}>
-                  {flow.progress}%
-                </span>
-              </div>
-              <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                <div 
-                  className={`h-full transition-all duration-1000 ease-out ${flow.color}`}
-                  style={{ width: `${flow.progress}%` }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+        ))}
+        <button className="p-1.5 text-emerald-500/50 hover:text-emerald-500">
+          <BarChart3 size={14} />
+        </button>
       </div>
 
-      {/* Knowledge Hub Footer */}
-      <div className="mt-auto pt-6">
-        <div className="relative p-5 rounded-[2rem] bg-gradient-to-br from-blue-600/10 via-indigo-600/5 to-transparent border border-blue-500/20 overflow-hidden group">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-blue-600/10 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700" />
-          <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2 relative z-10">
-            Business Hub <ExternalLink size={14} className="text-blue-400" />
-          </h4>
-          <p className="text-xs text-gray-500 leading-relaxed mb-5 relative z-10 font-medium">
-            Unified command center for AI-driven business intelligence and process monitoring.
-          </p>
-          <button className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 active:translate-y-0 relative z-10">
-            Open Command Center
-          </button>
-        </div>
+      {/* Automations Progress */}
+      <div className="space-y-4 mb-6">
+        {[
+          { label: 'Email Campaign', status: 'RUNNING', color: 'bg-emerald-500', progress: 65, icon: Mail },
+          { label: 'SEO Analysis', status: 'COMPLETED', color: 'bg-emerald-400', progress: 100, icon: BarChart3 },
+          { label: 'Video Render', status: '72% PROCESSING', color: 'bg-emerald-600', progress: 72, icon: Box },
+        ].map((flow, i) => (
+          <div key={i} className="group">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <flow.icon size={14} className="text-gray-500 group-hover:text-emerald-400 transition-colors" />
+                <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">{flow.label}:</span>
+                <span className={`text-[10px] font-black tracking-tighter ${flow.progress === 100 ? 'text-emerald-400' : 'text-emerald-500'}`}>{flow.status}</span>
+              </div>
+            </div>
+            <div className="w-full h-1.5 bg-emerald-500/5 rounded-full overflow-hidden border border-emerald-500/10">
+              <div 
+                className={`h-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(16,185,129,0.5)] ${flow.color}`}
+                style={{ width: `${flow.progress}%` }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer Widgets */}
+      <div className="grid grid-cols-2 gap-3 mt-auto pt-4">
+        <button className="p-3 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-between group hover:bg-emerald-500/10 transition-all">
+          <div className="flex items-center gap-2">
+            <Box size={14} className="text-emerald-500" />
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Prompt Library</span>
+          </div>
+          <ChevronRight size={12} className="text-emerald-500/30 group-hover:text-emerald-500" />
+        </button>
+        <button className="p-3 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-between group hover:bg-emerald-500/10 transition-all">
+          <div className="flex items-center gap-2">
+            <Settings size={14} className="text-emerald-500" />
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Business Hub</span>
+          </div>
+          <ChevronRight size={12} className="text-emerald-500/30 group-hover:text-emerald-500" />
+        </button>
       </div>
     </div>
   );

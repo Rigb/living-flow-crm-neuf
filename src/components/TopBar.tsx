@@ -1,59 +1,55 @@
 import React from 'react';
-import { Search, Bell, Command, ChevronDown, Activity, Globe } from 'lucide-react';
+import { Search, ChevronRight, Plus, MoreHorizontal, LayoutGrid, List, BarChart2 } from 'lucide-react';
 
 const TopBar = () => {
   return (
-    <header className="h-20 border-b border-white/5 bg-[#050D14]/80 backdrop-blur-xl flex items-center justify-between px-8 z-20">
-      {/* Search Bar */}
-      <div className="flex-1 max-w-xl">
+    <header className="h-[64px] border-b border-emerald-500/10 bg-black/40 backdrop-blur-2xl flex items-center justify-between px-6 z-30">
+      <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2 group cursor-pointer">
+          <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+            <span className="text-black font-black text-lg tracking-tighter italic">LF</span>
+          </div>
+        </div>
+
+        <nav className="flex items-center gap-3 text-[13px] font-medium text-gray-500">
+          <ChevronRight size={14} className="text-emerald-500/50" />
+          <span className="text-white">Dashboard</span>
+          <ChevronRight size={14} className="text-emerald-500/50" />
+          <span className="hover:text-emerald-400 cursor-pointer transition-colors">Home</span>
+        </nav>
+      </div>
+
+      <div className="flex-1 max-w-xl mx-12">
         <div className="relative group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-400 transition-colors" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-emerald-400 transition-colors" size={16} />
           <input 
             type="text" 
-            placeholder="Search commands or data..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-12 pr-20 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all"
+            placeholder="Create, Analyze, Automate..."
+            className="w-full bg-emerald-500/5 border border-emerald-500/10 rounded-full py-2 pl-12 pr-4 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-emerald-500/30 focus:bg-emerald-500/10 transition-all shadow-inner"
           />
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-bold text-gray-500">
-            <Command size={10} /> K
-          </div>
         </div>
       </div>
 
-      {/* System Status & Actions */}
       <div className="flex items-center gap-6">
-        {/* Status Indicators */}
-        <div className="hidden lg:flex items-center gap-4 border-r border-white/10 pr-6">
+        <div className="flex items-center gap-4 border-r border-emerald-500/10 pr-6 text-[11px] font-bold tracking-tight">
           <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nodes Active</span>
+            <span className="text-emerald-400">€ 6,552</span>
+            <span className="text-gray-500 uppercase tracking-widest text-[9px]">Today</span>
           </div>
           <div className="flex items-center gap-2">
-            <Activity className="text-blue-400" size={14} />
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">2.4ms Latency</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Globe className="text-purple-400" size={14} />
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Global Sync</span>
+            <span className="text-emerald-400">€ 8,320</span>
+            <span className="text-gray-500 uppercase tracking-widest text-[9px]">This Month</span>
           </div>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className="relative p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all group">
-            <Bell size={20} className="group-hover:rotate-12 transition-transform" />
-            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-blue-500 rounded-full border-2 border-[#050D14]" />
+          <button className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-emerald-500/5 border border-emerald-500/10 text-emerald-400 text-[12px] font-bold hover:bg-emerald-500/10 transition-all uppercase tracking-widest">
+            <Plus size={14} /> Create
           </button>
           
-          <button className="flex items-center gap-3 pl-2 pr-4 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-xs font-bold text-white shadow-lg shadow-blue-600/20">
-              LF
-            </div>
-            <div className="flex flex-col items-start">
-              <span className="text-xs font-bold text-white tracking-wide">Workspace</span>
-              <span className="text-[9px] font-bold text-blue-500 uppercase tracking-widest">Production</span>
-            </div>
-            <ChevronDown size={14} className="text-gray-500 group-hover:text-white transition-colors ml-1" />
-          </button>
+          <div className="w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center p-0.5 group cursor-pointer overflow-hidden">
+             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Pauline" alt="Profile" className="w-full h-full rounded-full object-cover group-hover:scale-110 transition-transform" />
+          </div>
         </div>
       </div>
     </header>
